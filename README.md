@@ -1,2 +1,2 @@
 # check-jira
-Simple page to check jira unauth vulnerability easily
+Simple page to check jira unauth vulnerabilities easily
